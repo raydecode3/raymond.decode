@@ -3,199 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cardano Staking Pool</title>
+    <title>RaymondDecode | High-Performance Cardano Infrastructure</title>
     <style>
-        /* --- 基礎設定 & 科技感配色 --- */
+        /* --- 1. 現代化基礎設定 --- */
         :root {
-            --bg-color: #0b0c15; /* 深邃黑 */
-            --card-bg: #161b22; /* 卡片背景 */
-            --accent-color: #00d2ff; /* 科技藍 */
-            --text-main: #e6edf3;
-            --text-muted: #8b949e;
-            --success: #238636;
+            --bg-color: #030712; /* 深邃黑藍 */
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --primary-accent: #38bdf8; /* 天空藍 */
+            --secondary-accent: #818cf8; /* 靛藍 */
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --font-main: system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-image: radial-gradient(circle at 50% 50%, #1a202c 0%, #0b0c15 100%);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* 背景光暈效果 */
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
         }
 
+        /* --- 2. 排版容器 --- */
         .container {
-            max-width: 800px;
-            width: 90%;
-            text-align: center;
-            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        /* --- 標題區 --- */
+        /* --- 3. 導覽列 --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            margin-bottom: 60px;
+        }
+        .brand {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+        .brand span { color: var(--primary-accent); }
+        
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-accent); }
+
+        /* --- 4. Hero 區域 (主視覺) --- */
+        .hero {
+            text-align: center;
+            padding: 60px 0 100px;
+        }
+        
         h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, #fff, var(--accent-color));
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            /* 漸層文字特效 */
+            background: linear-gradient(to right, #fff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
         }
 
-        .tagline {
+        .subtitle {
+            font-size: 1.25rem;
             color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
         }
 
-        /* --- 核心卡片區 --- */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            color: #000;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 99px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(56, 189, 248, 0.4);
+        }
+
+        /* --- 5. 數據與比較 (卡片式設計) --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid #30363d;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.3s, border-color 0.3s;
+            /* 毛玻璃效果 */
             backdrop-filter: blur(10px);
-            transition: transform 0.2s;
         }
 
         .card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
         }
 
-        /* --- 里程碑徽章 --- */
-        .milestone-badge {
-            background-color: rgba(35, 134, 54, 0.2);
-            color: #3fb950;
-            border: 1px solid #238636;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            display: inline-flex;
+        .card h3 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
+            gap: 10px;
         }
 
-        /* --- Pool ID 區塊 (像程式碼一樣) --- */
-        .pool-id-box {
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            padding: 15px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-            color: var(--accent-color);
-            word-break: break-all;
-            position: relative;
-            margin: 1rem 0;
-            cursor: pointer;
+        .highlight-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+            font-family: var(--font-mono);
+            margin-bottom: 8px;
         }
 
-        .pool-id-box:active {
-            background-color: #1a1f26;
-        }
-
-        .copy-hint {
-            display: block;
-            font-size: 0.75rem;
+        .desc {
             color: var(--text-muted);
-            margin-top: 5px;
-            font-family: sans-serif;
+            font-size: 0.95rem;
         }
 
-        /* --- 按鈕 --- */
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: #000;
-            padding: 12px 30px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #fff;
-            box-shadow: 0 0 15px var(--accent-color);
-        }
-
-        footer {
-            margin-top: 3rem;
-            color: var(--text-muted);
+        /* 比較表優化 */
+        .comparison-label {
             font-size: 0.8rem;
-        }
-        
-        .status-dot {
-            height: 10px;
-            width: 10px;
-            background-color: #3fb950;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 10px #3fb950;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: block;
         }
 
+        .tech-spec {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--primary-accent);
+            background: rgba(56, 189, 248, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        /* --- 6. 部落格列表 --- */
+        .blog-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 60px;
+            margin-bottom: 60px;
+        }
+        .post-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: opacity 0.2s;
+        }
+        .post-item:hover { opacity: 0.8; }
+        .post-title { font-weight: 500; font-size: 1.1rem; color: var(--text-main); text-decoration: none; }
+        .post-date { font-family: var(--font-mono); color: var(--text-muted); font-size: 0.85rem; }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            padding-bottom: 40px;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <header>
-            <h1>Raymond Decode</h1> 
-            <p class="tagline">Secure. Reliable. Decentralized.</p>
-        </header>
-
-        <main>
-            <div class="card">
-                <div class="milestone-badge">
-                    <span class="status-dot"></span>
-                    Operational
-                </div>
-                <h3>Recent Achievement</h3>
-                <p style="font-size: 1.1rem; margin-top: 10px;">
-                    🎉 <strong>Epoch 602</strong>: Successfully Minted First Block!
-                </p>
-                <p style="color: var(--text-muted);">
-                    Our infrastructure is proven and rewarding. Join us early.
-                </p>
+        <nav>
+            <div class="brand">Raymond<span>Decode</span></div>
+            <div class="nav-links">
+                <a href="#infra">Infrastructure</a>
+                <a href="#blog">Engineering Notes</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
             </div>
+        </nav>
 
+        <div class="hero">
+            <h1>Industrial Stability.<br>Bare Metal Performance.</h1>
+            <p class="subtitle">
+                Designed by a Senior Firmware Engineer.<br>
+                Optimized for Cardano Block Validation.
+            </p>
+            <a href="#" class="cta-button">Delegate to RDC</a>
+        </div>
+
+        <span class="comparison-label">Why RDC? The Bare Metal Advantage</span>
+        <div class="grid" id="infra">
             <div class="card">
-                <h3>Delegate to Us</h3>
-                <p>Search for ticker: <strong>[RDC]</strong></p>
-                
-                <div class="pool-id-box" onclick="copyToClipboard('pool14hk8kx2c8ukxcq7z3tqdedly9599f9sfhy5lfd3mp98txkdeevk')" title="Click to Copy">
-                    pool14hk8kx2c8ukxcq7z3tqdedly9599f9sfhy5lfd3mp98txkdeevk
-                    <span class="copy-hint">(Click ID to Copy)</span>
-                </div>
-
-                <a href="https://cexplorer.io" target="_blank" class="btn">View on Cexplorer</a>
+                <h3>Dedicated Resources</h3>
+                <div class="highlight-text">0% Steal</div>
+                <p class="desc">Unlike Cloud VPS, our CPU cycles are never shared. Guaranteed deterministic performance.</p>
             </div>
-        </main>
+            <div class="card">
+                <h3>Direct I/O Access</h3>
+                <div class="highlight-text">NVMe</div>
+                <p class="desc">Bypassing virtualization layers for ultra-low latency block propagation.</p>
+            </div>
+            <div class="card">
+                <h3>Runtime Tuning</h3>
+                <div class="highlight-text">GHC RTS</div>
+                <p class="desc">Custom Haskell memory allocation parameters tuned for 64GB RAM environment.</p>
+            </div>
+        </div>
+
+        <div class="blog-section" id="blog">
+            <span class="comparison-label">Latest Engineering Notes</span>
+            
+            <div class="post-item">
+                <a href="#" class="post-title">Optimizing Cardano Node GHC RTS Flags</a>
+                <span class="post-date">2025-10-12</span>
+            </div>
+            <div class="post-item">
+                <a href="#" class="post-title">Rotating KES Keys with Ledger on Windows</a>
+                <span class="post-date">2025-09-28</span>
+            </div>
+            <div class="post-item">
+                <a href="#" class="post-title">Why Bare Metal Beats Cloud VPS for Staking</a>
+                <span class="post-date">2025-09-15</span>
+            </div>
+        </div>
 
         <footer>
-            <p>Powered by Ubuntu 24.04 LTS & Bare Metal Performance</p>
-            <p>&copy; 2026 My Cardano Staking Pool</p>
+            <p>&copy; 2026 RaymondDecode. Operator of [RDC] Pool.</p>
         </footer>
     </div>
 
-    <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                alert('Pool ID copied to clipboard!');
-            }, function(err) {
-                console.error('Could not copy text: ', err);
-            });
-        }
-    </script>
 </body>
 </html>
